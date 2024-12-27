@@ -70,13 +70,23 @@ const updateVisitor = async (req, res) => {
 // 📝 Delete a visitor by ID
 const deleteVisitor = async (req, res) => {
     try {
-        const deletedVisitor = await Visitor.findByIdAndDelete(req.params.id);
-        if (!deletedVisitor) {
+        const { id } = req.params;
+
+        // Check if visitor exists
+        const visitor = await Visitor.findById(id);
+        if (!visitor) {
             return res.status(404).json({ success: false, message: 'Visitor not found' });
         }
-        res.status(200).json({ success: true, message: 'Visitor deleted successfully' });
+
+        // Delete all reviews associated with this visitor
+        await Review.deleteMany({ visitor: id });
+
+        // Delete the visitor
+        await Visitor.findByIdAndDelete(id);
+
+        res.status(200).json({ success: true, message: 'Visitor and related reviews removed successfully' });
     } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 };
 

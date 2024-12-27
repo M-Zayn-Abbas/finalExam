@@ -109,16 +109,33 @@ const updateReview = async (req, res) => {
 // 📝 Delete a review by ID
 const deleteReview = async (req, res) => {
     try {
-        const deletedReview = await Review.findByIdAndDelete(req.params.id);
-        if (!deletedReview) {
+        const { id } = req.params;
+
+        // Find the review
+        const review = await Review.findById(id);
+        if (!review) {
             return res.status(404).json({ success: false, message: 'Review not found' });
         }
-        res.status(200).json({ success: true, message: 'Review deleted successfully' });
+
+        // Store attraction ID before deleting the review
+        const attractionId = review.attraction;
+
+        // Delete the review
+        await Review.findByIdAndDelete(id);
+
+        // Recalculate average rating for the attraction
+        const reviews = await Review.find({ attraction: attractionId });
+        const totalScore = reviews.reduce((sum, review) => sum + review.score, 0);
+        const averageRating = reviews.length > 0 ? (totalScore / reviews.length).toFixed(2) : 0;
+
+        // Update the attraction's rating
+        await Attraction.findByIdAndUpdate(attractionId, { rating: averageRating });
+
+        res.status(200).json({ success: true, message: 'Review deleted and attraction rating updated' });
     } catch (error) {
-        res.status(500).json({ success: false, error: error.message });
+        res.status(500).json({ success: false, message: error.message });
     }
 };
-
 module.exports = {
     getAllReviews,
     getReviewById,
