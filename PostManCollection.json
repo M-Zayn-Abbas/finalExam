@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "94c06a1c-f932-4a10-9291-698c05385850",
+		"name": "Tourist Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40374005"
+	},
+	"item": [
+		{
+			"name": "Creating Attractions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Eiffel Tower\",\r\n  \"location\": \"Paris, France\",\r\n  \"entryFee\": 25\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/attractions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"attractions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creating  Visitors",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Zain Abbas\",\r\n  \"email\": \"zainabbas@gmail.com\",\r\n  \"visitedAttractions\": [\"676e7facfa775956ecf6a034\", \"676e7fd6fa775956ecf6a038\"]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/visitors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"visitors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creating reviews",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"attraction\": \"676e7fd6fa775956ecf6a038\",  // Attraction ID\r\n  \"visitor\": \"676e8144fa775956ecf6a043\",    // Visitor ID\r\n  \"score\": 3,                             // Rating between 1-5\r\n  \"comment\": \"nice place but needs to be clean!\" // Optional comment\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Attractions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/attractions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"attractions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Visitors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/visitors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"visitors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an Attraction",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Sadar Bazaar\",\r\n  \"location\": \"Lahore, Pakistan\",\r\n  \"entranceFee\": 0\r\n  }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/attractions/676e7facfa775956ecf6a034",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"attractions",
+						"676e7facfa775956ecf6a034"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Visitor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Hashir\",\r\n  \"email\": \"Hashir@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/visitors/676e8079fa775956ecf6a03c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"visitors",
+						"676e8079fa775956ecf6a03c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Review",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \r\n  \"score\": 2,\r\n  \"comment\": \"Did not like the place\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/reviews/676e829dfa775956ecf6a052",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"reviews",
+						"676e829dfa775956ecf6a052"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Review",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/reviews/676e82dbfa775956ecf6a05b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"reviews",
+						"676e82dbfa775956ecf6a05b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Visitor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/visitors/676e871ffa775956ecf6a07f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"visitors",
+						"676e871ffa775956ecf6a07f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Attraction",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/attractions/676e7fbcfa775956ecf6a036",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"attractions",
+						"676e7fbcfa775956ecf6a036"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Top Rated Attractions",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "View the activities of visitors",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

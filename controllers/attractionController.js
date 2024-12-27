@@ -84,6 +84,8 @@ const deleteAttraction = async (req, res) => {
     }
 };
 
+// 📝 Get Top rated Attraction
+
 const getTopRatedAttractions = async (req, res) => {
     try {
         const topAttractions = await Attraction.find()
